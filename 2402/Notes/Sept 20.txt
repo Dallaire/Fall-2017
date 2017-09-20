@@ -1,0 +1,5 @@
+Arraytack implementation of List interface that is fast if add and remove from the end.
+
+Theorm: ArrayStack implements the list interface
+  1. get(i),set(i) each run in O(1) time
+  
