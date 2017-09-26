@@ -6,9 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.TreeSet;
+import java.util.SortedSet;
 
-public class Part6 {
-	
+public class Part5 {
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
@@ -17,6 +19,14 @@ public class Part6 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		SortedSet<String> ss = new TreeSet<>();
+
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+				ss.add(line);
+			}
+		for (String line : ss){
+				w.println(line);
+		}
 	}
 
 	/**
@@ -33,7 +43,7 @@ public class Part6 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

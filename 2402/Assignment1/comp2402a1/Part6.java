@@ -6,17 +6,40 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.TreeSet;
+import java.util.Comparator;
 
-public class Part7 {
-	
+public class Part6 {
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
 	 * @param w the writer to write to
 	 * @throws IOException
 	 */
+
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		Set<String> s = new TreeSet<String>(
+		Collections.sort(s, new Comparator<Integer>(){
+			public int compare(String s1, String s2){
+				if (!s2.length()==s1.length())
+					return s2.length()-s1.length();
+				}
+				else{
+					return s1.compareTo(s2);
+				}
+			}
+		});
+		);
+
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+				s.add(line);
+			}
+
+		for (String line : s){
+				w.println(line);
+			}
 	}
 
 	/**
@@ -33,7 +56,7 @@ public class Part7 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

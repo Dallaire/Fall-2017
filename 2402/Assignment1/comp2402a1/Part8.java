@@ -6,9 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
 
-public class Part2 {
+public class Part8 {
 
 	/**
 	 * Your code goes here - see Part0 for an example
@@ -16,19 +19,34 @@ public class Part2 {
 	 * @param w the writer to write to
 	 * @throws IOException
 	 */
+
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		ArrayList<String> list = new ArrayList();
+		Map<String,Integer> map= new TreeMap<String, Integer>(
+		Collections.sort(map, new Comparator<Integer>(){
+			public int compare(String s1, String s2){
+				if(!map.get(s2)==map.get(s1)){
+					return !map.get(s2)-map.get(s1);
+				}
+				else{
+					return s1.compareTo(s2);
+				}
+			}
+		});
+		);
 
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
-				list.add(line);
-			}
-
-		for(Integer i=0; i<list.length();i+2){
-			  w.println(list[i]);
+				Integer freq = map.get(line);
+				if(freq == null){
+					map.put(line,1);
+				}
+				else{
+					map.put(line, freq+1);
+				}
 		}
-		for(Integer i=1; i<list.length();i+2){
-			  w.println(list[i]);
+
+		for (String line : map.keySet()){
+				w.println(line);
 		}
 	}
 

@@ -6,10 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.ListIterator;
 
-public class Part1 {
+public class Part9 {
 
 	/**
 	 * Your code goes here - see Part0 for an example
@@ -19,14 +17,7 @@ public class Part1 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		ArrayList<String> list = new ArrayList();
-
-		for (String line = r.readLine(); line != null; line = r.readLine()) {
-				list.add(line);
-			}
-
-		for(ListIterator<string> itr = list.listIterator(list.size()); itr.hasPrevious();)
-				w.println(itr.previous());
+		//treeset add in and check if cieling starts with it, if not output immediately.
 	}
 
 	/**

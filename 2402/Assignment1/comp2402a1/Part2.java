@@ -6,10 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class Part4 {
+public class Part2 {
 
 	/**
 	 * Your code goes here - see Part0 for an example
@@ -19,15 +18,17 @@ public class Part4 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		Queue<String> list = new LinkedList<String>();
+		ArrayList<String> list = new ArrayList();
 
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
 				list.add(line);
 			}
-		for (String line : list){
-				if (!(line % 2 ==0){
-					w.println(list.poll());
-				}
+
+		for(int i=0; i<list.length();i+2){
+			  w.println(list[i]);
+		}
+		for(int i=1; i<list.length();i+2){
+			  w.println(list[i]);
 		}
 	}
 

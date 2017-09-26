@@ -1,4 +1,4 @@
-package comp2402a1;
+//package comp2402a1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,9 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
-public class Part7 {
-	
+public class Part1 {
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
@@ -17,6 +19,14 @@ public class Part7 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		ArrayList<String> list = new ArrayList();
+
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+				list.add(line);
+			}
+
+		for(ListIterator<String> itr = list.listIterator(list.size()); itr.hasPrevious();)
+				w.println(itr.previous());
 	}
 
 	/**
@@ -33,7 +43,7 @@ public class Part7 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-public class Part5 {
-	
+public class Part10 {
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
@@ -33,7 +33,7 @@ public class Part5 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));
