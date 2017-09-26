@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2404</title>
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {
+	font-size:24px;
+	font-family: 'Courier New';
+}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 2404 Fall 2017</p>
+<p class="header subheader">Tutorial 02: File IO and Strings</p>
+<p>&copy; L.D. Nel 2017</p>
+<hr />
+<p class="red">Revisions will be noted here</p>
+<hr />
+<p class="segment-header">Description:</p>
+
+<p>The purpose of this tutorial is to familarize you with some simple file I/O in c++ that would be appropriate for assignment #1. Also to get you working with some of the capabilities of the <span class="code">&lt;string&gt;</span> library.</p>
+<p>You will need to do some research regarding <span class="code">&lt;fstream&gt;</span> and <span class="code">&lt;string&gt;</span>. Look at the information provided at</p>
+<p><a href="http://www.cplusplus.com/reference/fstream">http://www.cplusplus.com/reference/fstream/</a></p>
+<p>and</p>
+<p><a href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string/</a></p>
+<p>Do some google-ing and experiments before coming to the tutorial.</p>
+<p class="red">This tutorial is meant to be started as homework. You will not be able to finish if you only start working on it at your tutorial session.</p>
+<p>&nbsp;</p>
+<hr/>
+<h2>Preliminary:</span> Writing and Reading Text Files</h2>
+<p>Open the file <span class="code">writeFileMain.cpp </span>in an editor and study the code. Compile and run it and get familiar with what it does. It should prompt your for some information and then write it to a text file. Run the code and then see that the text file <span class="code">phoneData.txt</span> was created and check its contents.</p>
+<p>The demo code is using C++11 <span class="code">&lt;string&gt;</span> and <span class="code">&lt;fstream&gt;</span> features. You will have to compile it with <span class="code">-std=c++11</span> option:</p>
+<p><span class="code">g++ -g -Wall -std=c++11 writeFileMain.cpp</span><span class="code"></span></p>
+<p>My output looked like this:</p>
+<p><img src="images/01WriteFile.png" width="909" height="257"></p>
+<p>The <span class="code">writeFileMainAlternative.cpp</span> file shows an input technique which is much debated. Many books show it as an example of how to read from <span class="code">cin</span> or a file, but many feel it is inherently unsafe and is, in fact,  an example of how NOT to do it. Have a look and see what you think. What potential problems do you see?</p>
+<p>&nbsp;</p>
+<p>Next open the file <span class="code">readFileMain.cpp</span> and examine its code. The program reads the lines of text in the file <span class="code">songtitles.txt</span>. These are the song titles from the <span class="code">beatles.db</span> database being used in assignment #1. Compile and run the program. It should open the file, read it contents and print the song titles to the console. My output looked like the following:</p>
+<p><img src="images/02ReadFile.png" width="896" height="279"></p>
+<p>&nbsp;</p>
+<hr/>
+<h2>Problem 1:</span></h2>
+<p>Create a new file <span class="code">main.cpp</span> that combines   <span class="code">readFileMain.cpp</span> and <span class="code">writeFileMain.cpp</span> so that the program does the following.</p>
+<p>1) The program should prompt the user for an input file name and then prompt the user for an output file name.</p>
+<p>2) The program should read the lines of text from the input file and then write the lines of text to the output file.</p>
+<p>When it has run the output file should be a copy of the input file. Test this using the <span class="code">songtitles.txt</span> file as the input file.</p>
+<pre>&nbsp;</pre>
+<h2>Problem 2) Writing a String Utility Function</h2>
+<p>You will notice that the song titles in the <span class="code">songtitles.txt</span> file are all lower case. We want to write a function to convert them to all upper case.</p>
+<p>Here is one possible solution for a function added to <span class="code">main.cpp</span>: (I wrote this function after researching the <span class="code">&lt;string&gt;</span> library and some c utility functions that are also included with c++. You should do some googling about iterating through strings and converting characters.</p>
+<pre>
+
+string toUpperCase(string str){
+	string s;
+	for(char & c : str){
+		s.append(1,toupper(c));
+	}
+	return s;
+}
+</pre>
+<p>Modify your main program so that instead of just writing the original song title to the output file like this:</p>
+<p class="code">file &lt;&lt; input &lt;&lt; endl;</p>
+<p>instead you write the titles in uppercase   like this:</p>
+<p class="code">file &lt;&lt; toUpperCase(input) &lt;&lt; endl;</p>
+<p>Test your code to see that the output file now has the song titles in upper case.</p>
+<p>&nbsp;</p>
+<h2>Problem 3) Title Case</h2>
+<p>Now we get to the real intention. Based on your research about strings write a function that will convert the song titles to &quot;title case&quot;. Title case has the following requirements:</p>
+<p>1) Each word in the title should start with a capital letter and the remaining letters in the word should be lower case.</p>
+<p>2) Any song that starts with &quot;The &quot; should have the &quot;The &quot; moved to the end of the title. For example &quot;The Girl From Ipanema&quot; should become &quot;Girl From Ipanema, The&quot;.</p>
+<p>Write a function <span class="code">string toTitleCase(string str){...}</span> that does this conversion.</p>
+<p>Test it with your program an confirm that the output file now contains the song titles in title case.</p>
+<p>&nbsp;</p>
+<h2>Problem 4) A String Utilities Class</h2>
+<p>Finally we don't want our code filling up with non-object-oriented global functions. We want to create a <span class="code">StrUtils</span> class that will provide some string utility functions. For now just our <span class="code">toUpperCase()</span> and <span class="code">toTitleCase()</span> functions.</p>
+<p>Create two files <span class="code">str_utils.h</span> and <span class="code">str_utils.cpp</span> to serve this purpose.</p>
+<p>Here is what the two files might look like with just the <span class="code">toUpperCase() </span>function represented. </p>
+<pre>
+//str_utils.h
+#include &lt;string&gt;
+
+using namespace std;
+
+class StrUtils{
+	public:
+	static string toUpperCase(string str);
+};
+</pre>
+
+<pre>
+//str_utls.cpp
+#include &lt;string&gt;
+#include "str_utils.h"
+
+using namespace std;
+
+
+string StrUtils::toUpperCase(string str){
+	string s;
+	for(char & c : str){
+		s.append(1,toupper(c));
+	}
+	return s;
+}
+</pre>
+<p>It is IMPORTANT to notice the <span class="code">toUpperCase</span> function is declared to be <span class="code">static</span>. That means we can invoke the function by itself and not on some object. An object, or instance, method <span class="code">toUpperCase()</span> would have to be invoked like this:</p>
+<p class="code">someObject.toUpperCase(myString);</p>
+<p>But a <span class="code">static</span> method of class <span class="code">StrUtils</span> would be invoked like this:</p>
+<p class="code">StrUtils::toUpperCase(myString);</p>
+<p>So your use of this function in your code might now look like this:</p>
+<p class="code">file &lt;&lt; StrUtils::toUpperCase(input) &lt;&lt; endl;</p>
+<pre>&nbsp;</pre>
+<p>Make the required changes to <span class="code">main.cpp</span> (which would include <span class="code">str_utils.h</span> now) and recompile and run the code. Remember you will now have to have both <span class="code">main.cpp</span> and <span class="code">str_utils.cpp</span> compiled with your <span class="code">g++</span> command.</p>
+<p>&nbsp;</p>
+<p><span class="red">When you have finished these Problems demonstrate your work to a tutorial TA to get credit for the tutorial.</span></p>
+<h2>&nbsp;</h2>
+<h2>Optional) Challenge Problem</h2>
+<p>If you look at the <span class="code">&lt;string&gt;</span> reference at <a href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string/</a> you can find member functions, or methods, <span class="code">size()</span> and <span class="code">length()</span>. According to the reference they both return the same thing: the length of the string <span class="black-bold">in bytes</span> (not in characters). Curiously there appears to be no method that returns the number of characters in a <span class="code">&lt;string&gt;</span> object. What's up with that? Can you explain what the issue is? Can you write a string utility method that does return the number of characters in a string?</p>
+<p>&nbsp;</p>
+<p class="red">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

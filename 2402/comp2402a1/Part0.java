@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Part0 {
-	
+
 	/**
 	 * Read lines one at a time from r.  After reading all lines, output
 	 * all lines to w, outputting duplicate lines only once.  Note: the order
@@ -47,7 +47,7 @@ public class Part0 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

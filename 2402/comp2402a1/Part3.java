@@ -6,9 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Part3 {
-	
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
@@ -17,6 +18,17 @@ public class Part3 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		ArrayList<String> list = new ArrayList();
+
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+				list.add(line);
+			}
+
+		for (Integer i=42; i<list.length(); i++;){
+				if(list[i].isEmpty() || list[i]==null;){
+					w.println(list[i]);
+				}
+		}
 	}
 
 	/**
@@ -33,7 +45,7 @@ public class Part3 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

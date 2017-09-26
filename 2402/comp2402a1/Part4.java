@@ -6,9 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Part4 {
-	
+
 	/**
 	 * Your code goes here - see Part0 for an example
 	 * @param r the reader to read from
@@ -17,6 +19,16 @@ public class Part4 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		Queue<String> list = new LinkedList<String>();
+
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+				list.add(line);
+			}
+		for (String line : list){
+				if (!(line % 2 ==0){
+					w.println(list.poll());
+				}
+		}
 	}
 
 	/**
@@ -33,7 +45,7 @@ public class Part4 {
 				w = new PrintWriter(System.out);
 			} else if (args.length == 1) {
 				r = new BufferedReader(new FileReader(args[0]));
-				w = new PrintWriter(System.out);				
+				w = new PrintWriter(System.out);
 			} else {
 				r = new BufferedReader(new FileReader(args[0]));
 				w = new PrintWriter(new FileWriter(args[1]));

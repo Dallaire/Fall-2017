@@ -1,0 +1,3 @@
+In C++ always use file.close() when done reading/writing
+
+strings size/length methods only give byte value NOT ACTUALLY LENGTH should be ok unless there are multi byte characters.
