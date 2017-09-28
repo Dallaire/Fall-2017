@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Part8 {
 
@@ -22,18 +24,7 @@ public class Part8 {
 
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		Map<String,Integer> map= new TreeMap<String, Integer>(
-		Collections.sort(map, new Comparator<Integer>(){
-			public int compare(String s1, String s2){
-				if(!map.get(s2)==map.get(s1)){
-					return !map.get(s2)-map.get(s1);
-				}
-				else{
-					return s1.compareTo(s2);
-				}
-			}
-		});
-		);
+		Map<String,Integer> map= new HashMap<String, Integer>();
 
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
 				Integer freq = map.get(line);
@@ -44,9 +35,21 @@ public class Part8 {
 					map.put(line, freq+1);
 				}
 		}
+		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+			@Override
+			public int compare(Map.Entry<String, Integer> s1, Map.Entry<String, Integer> s2 ) {
+            if (s1.getValue()==s2.getValue()) {
+            	return s1.getKey().compareTo(s2.getKey());
+						}
+						else {
+							return s2.getValue().compareTo(s1.getValue());
+						}
+        }
+		});
 
-		for (String line : map.keySet()){
-				w.println(line);
+		for (Map.Entry<String, Integer> entry : list){
+				w.println(entry.getKey());
 		}
 	}
 

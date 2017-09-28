@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import static java.lang.Math.sqrt;
+import java.util.ArrayList;
 
 public class Part10 {
 
@@ -17,6 +19,28 @@ public class Part10 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
+		ArrayList<String> deccending = new ArrayList<String>();
+		ArrayList<String> accending = new ArrayList<String>();
+		int n = 0;
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+			n++;
+			if(accending.isEmpty() || accending.get(accending.size() - 1).compareTo(line) < 0){
+				accending.add(line);
+			}
+			if(deccending.isEmpty() || deccending.get(deccending.size() - 1).compareTo(line) > 0){
+				deccending.add(line);
+			}
+		}
+		if (accending.size() >= Math.sqrt(n)){
+			for(String line : accending){
+				w.println(line);
+			}
+		}
+		else if (deccending.size() >= Math.sqrt(n)){
+			for(String line : deccending){
+				w.println(line);
+			}
+		}
 	}
 
 	/**

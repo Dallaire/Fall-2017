@@ -6,7 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Part3 {
 
@@ -18,17 +19,18 @@ public class Part3 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		ArrayList<String> list = new ArrayList();
-
+		Queue<String> list = new LinkedList();
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
 				list.add(line);
-			}
-
-		for (int i=42; i<list.length(); i++;){
-				if(list[i].isEmpty() || list[i]==null;){
-					w.println(list[i-42]);
+				if (list.size()==43){
+					if(line.isEmpty()){
+						w.println(list.poll());
+					}
+					else{
+						list.poll();
+					}
 				}
-		}
+			}
 	}
 
 	/**

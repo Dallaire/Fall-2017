@@ -1,4 +1,4 @@
-//package comp2402a1;
+package comp2402a1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

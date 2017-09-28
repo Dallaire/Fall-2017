@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.TreeSet;
 import java.util.Comparator;
+import java.util.Set;
+import java.util.Collections;
 
 public class Part6 {
 
@@ -20,18 +22,17 @@ public class Part6 {
 
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		Set<String> s = new TreeSet<String>(
-		Collections.sort(s, new Comparator<Integer>(){
+
+		Set<String> s = new TreeSet<String>(new Comparator<String>(){
 			public int compare(String s1, String s2){
-				if (!s2.length()==s1.length())
-					return s2.length()-s1.length();
-				}
-				else{
+				if(s2.length()==s1.length()){
 					return s1.compareTo(s2);
 				}
+				else{
+					return Integer.compare(s1.length(),s2.length());
+				}
 			}
-		});
-		);
+			});
 
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
 				s.add(line);

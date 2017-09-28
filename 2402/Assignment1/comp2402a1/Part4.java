@@ -23,13 +23,11 @@ public class Part4 {
 
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
 				list.add(line);
-			}
-		for (String line : list){
-				if (!(line.length() % 2 ==0){
+				if (!((line.length() % 2) ==0)){
 					w.println(list.poll());
 				}
+			}
 		}
-	}
 
 	/**
 	 * The driver.  Open a BufferedReader and a PrintWriter, either from System.in

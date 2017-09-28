@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.TreeSet;
+import java.lang.String;
 
 public class Part9 {
 
@@ -17,7 +19,17 @@ public class Part9 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		//treeset add in and check if cieling starts with it, if not output immediately.
+		TreeSet<String> set = new TreeSet<String>();
+		for (String line = r.readLine(); line != null; line = r.readLine()) {
+			if(set.ceiling(line)==null){
+				set.add(line);
+				w.println(line);
+			}
+			else if(!(set.ceiling(line).startsWith(line))){
+				set.add(line);
+				w.println(line);
+			}
+		}
 	}
 
 	/**

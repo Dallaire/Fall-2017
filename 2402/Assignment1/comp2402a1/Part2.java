@@ -24,11 +24,11 @@ public class Part2 {
 				list.add(line);
 			}
 
-		for(int i=0; i<list.length();i+2){
-			  w.println(list[i]);
+		for(int i=0; i<list.size();i+=2){
+			  w.println(list.get(i));
 		}
-		for(int i=1; i<list.length();i+2){
-			  w.println(list[i]);
+		for(int i=1; i<list.size();i+=2){
+			  w.println(list.get(i));
 		}
 	}
 
