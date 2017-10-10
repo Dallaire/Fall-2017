@@ -17,7 +17,7 @@ string StrUtils::toTitleCase(string str){
   if(str.compare(0,4,"the ")==0){
     string sub = str.substr(4,str.size()-4);
     for(int i=0; i<(sub.length()); i++){
-      if(i==0 || sub.substr(i,1)==" "){
+      if(i==0 || sub.substr(i-1,1)==" "){
         s.append(1,toupper(sub.at(i)));
       }
       else{

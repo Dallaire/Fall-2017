@@ -1,0 +1,69 @@
+====================================.
+====================================
+MyTunes music library
+Version 0.1 (Alpha) Sept 2017
+====================================
+//Some minor changes from the prototype file
+COMMANDS:
+add //add data to collections
+    //add recordings
+    add -r id title artist producer year
+    add -r 103 "Beatles For Sale" "Beatles" "George Martin" 1964
+    //add songs
+    add -s sid title composer //add song
+	   add -s 1001 "Misery" "Paul McCartney, John Lennon"
+    //add tracks
+    add -t albumID songID track_number
+    add -t 100 1000 1
+    //add users
+    add -u user_id name
+    add -u ajones "Anne Jones"
+    //add playlists
+    add -p user_id, playlist_name
+    add -p ldnel "Driving Songs"
+    //add playlist tracks
+    add -l user_id playlist_name song_id
+    add -l ldnel "Driving Songs" 1001
+
+delete  //delete data from collections
+	delete -s song_id //delete song
+    delete -s song_id -p playlist_name -u user_name //delete song from playlist
+	delete -r recording_id //delete recording
+	delete -u user_id //delete user
+    delete -p playist_name -u user_id //delete user playlist
+    delete -t song_id recording_id //delete track
+
+show    //show entries in collections
+	show songs
+    show users
+    show playlists -u user_id
+    show songs -u user_id -p playlist_name
+    show recordings
+    show tracks -r albumID
+
+UI SHELL COMMANDS (start with a dot):
+
+.quit   //quit the application
+
+.read   //read a script file
+	.read filename
+
+.log    //log commands and output
+	.log clear //clear the logs
+	.log start //begin logging commands only
+	.log start_output //begin logging output only
+	.log start_both  //begin logging commands and output
+	.log stop //stop logging
+	.log save filename //save log to filename
+  .log show //display current log contents on console
+
+.help   //show this help menu
+
+//   //comments
+     Any input starting with "//" or any output
+     starting with "//" is treated as a comment.
+     If input on CLI the comment will be written to log file.
+     Comments may appear in command script file.
+
+=====================================
+=====================================

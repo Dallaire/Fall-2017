@@ -1,0 +1,51 @@
+//Test script
+
+//Start log
+.log start
+
+//Tests add
+//add recording
+add -r 103 "Beatles For Sale" "Beatles" "George Martin" 1964
+//add song
+add -s 1001 "Misery" "Paul McCartney, John Lennon"
+//add track
+add -t 100 1000 1
+
+//logs outputs
+.log start_output
+
+//add users
+add -u jDall "Jacob Dallaire"
+//add playlists
+add -p jDall "Jams"
+//add playlist tracks
+add -l jDall "Jams" 1001
+
+.log start_both
+
+//Test delete Commands
+delete -s 1001
+delete -s 1001 -p Jams -u jDall
+delete -r 103
+
+//stop logging
+.log stop
+
+delete -u jDall
+delete -p jams -u jDall
+delete -t 1001 103
+
+//Display log
+.log show
+
+/Test show Commands
+show songs
+show users
+show playlists -u jDall
+show songs -u jDall -p Jams
+show recordings
+show tracks -r 103
+
+.log save log.txt
+
+.help

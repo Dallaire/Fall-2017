@@ -19,15 +19,15 @@ public class Part3 {
 	 */
 	public static void doIt(BufferedReader r, PrintWriter w) throws IOException {
 		// Your code goes here - see Part0 for an example
-		Queue<String> list = new LinkedList();
+		Queue<String> list = new LinkedList(); // Create a FIFO queue
 		for (String line = r.readLine(); line != null; line = r.readLine()) {
-				list.add(line);
-				if (list.size()==43){
+				list.add(line);	//add in lines
+				if (list.size()==43){	//Once the 43'rd element is added...
 					if(line.isEmpty()){
-						w.println(list.poll());
+						w.println(list.poll()); // if its an empty line print out and remove first element
 					}
 					else{
-						list.poll();
+						list.poll();	//otherwise remove from the queue
 					}
 				}
 			}
