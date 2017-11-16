@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {
+	font-size:24px;
+	font-family: 'Courier New';
+}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+
+<body>
+<p class="header">COMP 2404 Fall 2017</p>
+<p class="header subheader">Tutorial 04: Copy Construction and Assignment</p>
+<p>&copy; L.D. Nel 2017</p>
+<hr />
+<p class="red">Revisions will be noted here</p>
+<hr />
+<p class="segment-header">Description:</p>
+
+<p>The purpose of this tutorial is 
+to give you practice writing a proper copy constructor and assignment operator for an entity object class (<span class="courier">Person</span>) and a collection class (<span class="courier">Collection</span>)</p>
+<p class="red">This tutorial is meant to be started as homework. You will not be able to finish if you only start working on it at your tutorial session.</p>
+<p>&nbsp;</p>
+<hr/>
+<p class="segment-header">Demo Code</p>
+<p>The demo code provides classes <span class="courier"><span class="code">Date</span></span>, <span class="courier"><span class="code">EmailAddress</span></span>, <span class="courier"><span class="code">Person</span></span>, <span class="courier"><span class="code">Collection</span></span> which model person objects who have a <span class="code">name</span>, <span class="code">birthday</span> and an <span class="code">emailAddress</span>. The <span class="code">Collection</span> class provides a container to hold <span class="code">Person</span> objects. The demo code uses the old-style cstrings instead of string objects from the <span class="code">&lt;string&gt;</span> library. The <span class="courier"><span class="code">main.cpp</span></span> file has the test code and currently has the code for the two exercises commented out. That is because this code will crash until the required missing parts are added. Study the  demo code and run it. You should see the following output.</p>
+<p class="courier"><img src="images/demo1.jpg" width="843" height="321" alt="demo code" /></p>
+<p><br>
+</p>
+<p class="segment-header">Exercise 1</p>
+<p>Uncomment the Exercise 1 portion of the provided <span class="courier"><span class="code">main.cpp</span></span>. Compile and run the code and it will likely crash. The demo version of the <span class="courier"><span class="code">Person</span></span> class relies on the language provided copy constructor and the language provided assignment operator. Unfortunately these create memory problems. For this exercise you need to write your own copy constructor and assignment operator for the <span class="courier"><span class="code">Person</span></span> class. Use those supplied in the <span class="courier"><span class="code">EmailAddress</span></span> class as a starting model and also the examples in the lecture notes on constructors.</p>
+<p>Your copy constructor and assignment operator must ensure that no memory leaks or double deletions occur when the test code is run. After supplying your own copy constructor and assignment operator for the <span class="courier"><span class="code">Person</span></span> class you should be able to run the exercise 1 portion of the <span class="courier"><span class="code">main.cpp</span></span> and see an output the looks like the following.</p>
+
+<p><img src="images/ex1.jpg" alt="ex1 output" /></p>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Exercise 2</p>
+<p>Uncomment  both the Exercise 1 and Exercise 2 portion of the provided <span class="courier"><span class="code">main.cpp</span></span>. Compile and run the code and it will again likely crash. The demo version of the <span class="courier"><span class="code">Collection</span></span> class relies on the language provided copy constructor and the language provided assignment operator. Unfortunately again these create memory problems. For this exercise you need to write your own copy constructor and assignment operator for the <span class="courier">Collection</span> class. </p>
+<p>After supplying your own copy constructor and assignment operator for the <span class="courier"><span class="code">Collection</span></span> class you should be able to run the exercise 1 and 2 portion of the <span class="courier"><span class="code">main.cpp</span></span> and see an output the looks like the following.</p>
+<p>&nbsp;</p>
+<p><img src="images/ex2.jpg" alt="ex2 output" /></p
+>
+<p>&nbsp;</p>
+<p class="red">When you have completed the   exercises above  demonstrate your code to one of the tutorial TA's to get credit for the tutorial.</p>
+<p>&nbsp;</p>
+<h1 class="blue">Optional</h1>
+<p class="segment-header">Exercise 3</p>
+<p>Modify the code to remove the <span class="courier"><span class="code">&lt;cstring&gt;</span></span> based strings and replace it with <span class="code">&lt;string&gt;</span> string objects. Also the classes are represented in a single .h file. Properly break them up into .h and .cpp componentns.</p>
+<p class="red">If you have a nice solution for the optional exercise, email it to me ldnel@scs.carleton.ca and I will post it on the course web site for all to admire and learn from.</p>
+<p>&nbsp;</p>
+</body>
+</html>

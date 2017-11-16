@@ -5,7 +5,14 @@ using namespace std;
 
 class Songs{
 public:
-  static string addSong(string id, string title, string composer);
-  static string deleteSong(string songid);
+  Songs();
+  ~Songs(void);
+  Song * findByID(int anID);
+  static string addSong(int id, string title, string composer);
+  static string deleteSong(int songid);
   static string show();
+
+private:
+  vector<Song*> library;
+	vector<Song*>::iterator findPosition(Song & aSong);
 };

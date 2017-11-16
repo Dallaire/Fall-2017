@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+     <title>Canvas</title>
+     <script src="jquery-1.11.3.js"></script>
+
+      <style>
+         body {
+            background: #dddddd;
+         }
+
+		 canvas {
+		    margin: 20px;
+        padding: 0px;
+		 }
+		 .canvas {
+            background: #ffffff;
+            border: thin inset #aaaaaa;
+         }
+
+         #canvas1 {
+         }
+      </style>
+   </head>
+
+  <body>
+    <canvas id='canvas1' class='canvas' width='700' height='500'>
+      Canvas not rendered
+    </canvas>
+
+    <input type = "text"  id="userTextField" name = "userTextField"  value="" size = "60" />
+    <input type="button" value="Get Lyrics" onClick="handleSubmitButton()">
+    <input type="button" value="Save" onCLick="handleSaveButton()">
+
+    <script src='canvas.js'></script>
+  </body>
+</html>
