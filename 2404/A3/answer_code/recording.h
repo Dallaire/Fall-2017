@@ -18,7 +18,7 @@
 
 #include <ostream>
 #include <string>
-#include <vector>
+#include <map>
 
 #include "track.h"
 
@@ -39,7 +39,7 @@ class Recording {
     int getID();
 	void removeTrack(Track & aTrack);
 	void addTrack(Track & track, int position);
-	vector<Track*> & getTracks();
+	map<int, Track*> & getTracks();
     string toString() const;
 
 	private:
@@ -48,8 +48,8 @@ class Recording {
 	string producer;
 	string year;
 	int id;
-	vector<Track*> tracks;
-	vector<Track*>::iterator findPosition(Track & aTrack);
+	map<int, Track*> tracks;
+	map<int, Track*>::iterator findPosition(Track & aTrack);
 	Recording(const Recording & aRecording); //hide copy constructor in private section
 };
 

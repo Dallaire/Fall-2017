@@ -40,27 +40,26 @@ Recording::~Recording(){
 	cout << "~Recording(void)" << endl;
 }
 int Recording::getID(){return id;}
-vector<Track*> & Recording::getTracks(){return tracks;}
+map<int, Track*> & Recording::getTracks(){return tracks;}
 
-vector<Track*>::iterator Recording::findPosition(Track & aTrack){
-	for (vector<Track*>::iterator it = tracks.begin() ; it != tracks.end(); ++it)
-		if(*it == &aTrack) return it;
+map<int, Track*>::iterator Recording::findPosition(Track & aTrack){
+	for (map<int, Track*>::iterator it = tracks.begin() ; it != tracks.end(); ++it)
+		if(*it->second == &aTrack) return it;
 	return tracks.end();
 }
 
 void Recording::addTrack(Track & aTrack, int position){
 	//add track if it does not already exist
-	vector<Track*>::iterator itr = findPosition(aTrack);
+	map<int, Track*>::iterator itr = findPosition(aTrack);
 	if(itr == tracks.end()) {
 		if(position >=0 && position < MAX_NUMBER_OF_TRACKS)
-		   tracks[position] = &aTrack;
+		   tracks.insert({&aTrack.getID(),&aTrack});
 	}
 }
 
 void Recording::removeTrack(Track & aTrack){
 	//remove track from recording
-	for(vector<Track*>::size_type i = 0; i<tracks.size(); i++)
-		if(tracks[i] == &aTrack) tracks[i] = NULL;
+	tracks.erase(aTrack.getID());
 }
 
 string Recording::toString()const {
@@ -69,9 +68,8 @@ string Recording::toString()const {
 	s.append(to_string(id) + " " + title + " " + artist + " " + producer + " " + year);
 	s.append("\n");
 	s.append(indent + "Tracks:\n");
-	for (vector<Track*>::size_type i = 0 ; i < tracks.size(); i++){
-		if(tracks[i] != NULL)
-		   s.append(indent + to_string(i) + " " + (tracks[i])->toString() + "\n");
+	for (map<int, Track*>::iterator it = tracks.begin() ; it != tracks.end(); ++it){
+		 s.append(indent + it->second.toString() + "\n");
 	}
 
 	return s;

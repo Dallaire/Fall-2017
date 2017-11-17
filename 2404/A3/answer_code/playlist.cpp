@@ -18,7 +18,7 @@
 using namespace std;
 
 #include "playlist.h"
-	
+
 Playlist::Playlist(const string & aPlaylistName){
 	cout << "Playlist(string&)" << endl;
 	name = aPlaylistName;
@@ -31,29 +31,29 @@ Playlist::Playlist(const Playlist & aPlaylist){
 Playlist::~Playlist(){
 	cout << "~Playlist(void)" << endl;
 }
-int Playlist::getID(){return -1;}
-string Playlist::getName(){return name;}
+//int Playlist::getID(){return -1;}
+string Playlist::getID(){return name;}
 
-vector<Track*> & Playlist::getTracks(){return tracks;}
+map<int, Track*> & Playlist::getTracks(){return tracks;}
 
-vector<Track*>::iterator Playlist::findPosition(Track & aTrack){
-	for (vector<Track*>::iterator itr = tracks.begin() ; itr != tracks.end(); ++itr)
-		if(*itr == &aTrack) return itr;
+map<int, Track*>::iterator Playlist::findPosition(Track & aTrack){
+	for (map<int, Track*>::iterator itr = tracks.begin() ; itr != tracks.end(); ++itr)
+		if(*itr->second == &aTrack) return itr;
 	return tracks.end();
 }
 
 void Playlist::addTrack(Track & aTrack){
 	//add track if it does not already exist
-	vector<Track*>::iterator itr = findPosition(aTrack);
+	map<int, Track*>::iterator itr = findPosition(aTrack);
 	if(itr == tracks.end()) {
-		tracks.push_back(&aTrack);
-	}	
+		tracks.insert({aTrack.getID(),aTrack});
+	}
 }
 
 void Playlist::removeTrack(Track & aTrack){
-	vector<Track*>::iterator itr = findPosition(aTrack);
+	map<int, Track*>::iterator itr = findPosition(aTrack);
 	if(itr != tracks.end()) {
-		tracks.erase(itr);
+		tracks.erase(itr->first);
 	}
 }
 
@@ -63,10 +63,10 @@ string Playlist::toString()const {
 	s.append(name);
 	s.append("\n");
 	s.append(indent + indent + "Playlist Tracks:\n");
-	for (vector<Track*>::size_type i = 0 ; i < tracks.size(); i++){
-		   s.append(indent + indent + to_string(i) + " " + (tracks[i])->toString() + "\n");
+	for (std::map<int,Track>::iterator it = collection.begin(); it != collection.end(); ++it){
+		   s.append(indent + indent + tracks->second.toString() + "\n");
 	}
-	
+
 	return s;
 }
 

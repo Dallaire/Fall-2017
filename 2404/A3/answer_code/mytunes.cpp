@@ -1,4 +1,4 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * */
+map<string, /* * * * * * * * * * * * * * * * * * * * * * * * * * */
 /*                                                   */
 /*  Program:  MyTunes Music Player                   */
 /*  Author:   Jacob Dallaire 100918375							 */
@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include <map>
 using namespace std;
 #include "str_util.h"
 #include "mytunes.h"
@@ -331,13 +332,13 @@ void MyTunes::executeDeleteTrack(Command cmd){
 	if(track == NULL) return;
 
 	//PERFORM A CASCADED DELETE
-	vector<User*> theUsers = users.getCollection();
-	for(vector<User*>::iterator itr = theUsers.begin(); itr != theUsers.end(); itr++){
+	map<string, User*> theUsers = users.getCollection();
+	for(map<string, User*>::iterator itr = theUsers.begin(); itr != theUsers.end(); itr++){
 		User* user = *itr;
 		user->removeTrack(*track);
 	}
-	vector<Recording*> theRecordings = recordings.getCollection();
-	for(vector<Recording*>::iterator itr = theRecordings.begin(); itr != theRecordings.end(); itr++){
+	map<int, Recording*> theRecordings = recordings.getCollection();
+	for(map<int, Recording*>::iterator itr = theRecordings.begin(); itr != theRecordings.end(); itr++){
 		Recording* recording = *itr;
 		recording->removeTrack(*track);
 	}
@@ -356,8 +357,8 @@ void MyTunes::executeDeleteSong(Command cmd){
 	if(song == NULL) return;
 
 	//Perform Cascaded Delete
-	vector<Track*> theTracks = tracks.getCollection();
-	for(vector<Track*>::iterator itr = theTracks.begin(); itr != theTracks.end(); itr++){
+	map<int, Track*> theTracks = tracks.getCollection();
+	for(map<int, Track*>::iterator itr = theTracks.begin(); itr != theTracks.end(); itr++){
 		Track* track = *itr;
 		Song* trackSong = track->getSong();
 		if(song == trackSong){

@@ -20,7 +20,7 @@ using namespace std;
 #include "user.h"
 
 int User::nextUserNumericID = 1000;
-	
+
 User::User(const string & aUserID, const string & aName){
 	cout << "User(string&, string&, int)" << endl;
 	userid = aUserID;
@@ -34,44 +34,35 @@ User::User(const User & aUser){
 User::~User(){
 	cout << "~User(void)" << endl;
 	//user objects own playlists
-	for(int i=0; i<playlists.size(); i++)
-		delete playlists[i]; //delete playlists this user owns
-	
+	for (std::map<string, Playlist>::iterator it = playlists.begin(); it != playlists.end(); ++it){
+  playlists.erase(it->first);
 }
-int User::getID(){return id;}
 
-string User::getUserID(){return userid;}
+}
+//int User::getID(){return id;}
 
-vector<Playlist*>::iterator User::findPosition(Playlist & aPlaylist){
+string User::getID(){return userid;}
+
+/*vector<Playlist*>::iterator User::findPosition(Playlist & aPlaylist){
 	for (vector<Playlist*>::iterator itr = playlists.begin() ; itr != playlists.end(); ++itr)
 		if(*itr == &aPlaylist) return itr;
 	return playlists.end();
-}
+}*/
 
 Playlist* User::findPlaylist(const string & aPlaylistName){
-	for (vector<Playlist*>::iterator itr = playlists.begin() ; itr != playlists.end(); ++itr)
-		if(((*itr)->getName()).compare(aPlaylistName) == 0) return *itr;
-	return NULL;
+	return playlists.find(aPlaylistName);
 }
 void User::addPlaylist(Playlist & aPlaylist){
 	//add playlist if it does not already exist
-	vector<Playlist*>::iterator itr = findPosition(aPlaylist);
-	if(itr == playlists.end()) {
-		playlists.push_back(&aPlaylist);
-	}	
+	playlists.insert({aPlaylist.getName(),aPlaylist});
 }
 
 void User::removePlaylist(Playlist & aPlaylist){
-	vector<Playlist*>::iterator itr = findPosition(aPlaylist);
-	if(itr != playlists.end()) {
-	   Playlist * playlist = *itr;
-	   playlists.erase(itr);
-	   delete playlist;
-	}
+	playlists.erase(aPlaylist.getName());
 }
 
 void User::removeTrack(Track & aTrack){
-	for (vector<Playlist*>::iterator itr = playlists.begin() ; itr != playlists.end(); ++itr){
+	for (map<string, Playlist*>::iterator itr = playlists.begin() ; itr != playlists.end(); ++itr){
 		Playlist * playlist = *itr;
 		playlist->removeTrack(aTrack);
 	}
@@ -83,11 +74,11 @@ string User::toString()const {
 	s.append(userid + " " + name);
 	s.append("\n");
 	s.append(indent + "Playlists:\n");
-	for (vector<Playlist*>::size_type i = 0 ; i < playlists.size(); i++){
-		   s.append(indent + to_string(i) + " " + (playlists[i])->toString() + "\n");
+	for (std::map<string, Playlist>::iterator it = playlists.begin(); it != playlists.end(); ++it){
+		   s.append(indent + (*itr)->toString() + "\n");
 		   s.append("\n");
 	}
-	
+
 	return s;
 }
 

@@ -18,46 +18,37 @@
 #define _MYTUNESCOLLECTION_H
 
 #include <ostream>
-#include <vector>
+#include <map>
 #include <string>
 using namespace std;
 #include "UI.h"
 
-template <typename T>
+template <typename S, typename T>
 class MyTunesCollection {
 	public:
 	MyTunesCollection(){}
 	~MyTunesCollection (void){
-  	for(int i=0; i<collection.size(); i++)
-  		delete collection[i]; //delete T in this container
+		collection.clear();
   }
-  vector<T*> getCollection(){
+  map<S, T> getCollection(){
     return collection;
   }
 	T * findByID(int anID){
-    for (typename vector<T*>::iterator it = collection.begin() ; it != collection.end(); ++it)
-  		if((*it)->getID() == anID) return *it;
-  	return NULL;
+    return collection.find(anID);
   }
   T * findByID(const string anID){
-    for (typename vector<T*>::iterator itr = collection.begin() ; itr != collection.end(); ++itr)
-  		if(((*itr)->getUserID()).compare(anID) == 0) return *itr;
-  	return NULL;
+    return collection.find(anID);
   }
 	void add(T & aT){
-  	collection.push_back(&aT);
+  	collection.insert({aT.getID(), aT});
   }
 	void remove(T & aT){
-  	typename vector<T*>::iterator index = findPosition(aT);
-  	if(index != collection.end()) {
-  		T * theT = *index;
-  		collection.erase(index);
-  		delete theT; //free the memory of theT
-  	}
+  	collection.erase(&aT.getID());
   }
 	void showOn(UI & aView){
-    for(int i=0; i<collection.size(); i++)
-         aView.printOutput((*collection[i]).toString());
+    for (typename std::map<S,T>::iterator it = collection.begin(); it != collection.end(); ++it){
+       aView.printOutput(it->second.toString());
+		 }
   }
 	void showOn(UI & aView, int memberID){
     T * t = findByID(memberID);
@@ -71,12 +62,12 @@ class MyTunesCollection {
          view.printOutput(t->toString());
   }
 	private:
-	vector<T*> collection;
-	typename vector<T*>::iterator findPosition(T & aT){
+	map<S, T> collection;
+	/*typename vector<T*>::iterator findPosition(T & aT){
   	for (typename vector<T*>::iterator it = collection.begin() ; it != collection.end(); ++it)
   		if(*it == &aT) return it;
   	return collection.end();
-  }
+  }*/
 };
 
 #endif

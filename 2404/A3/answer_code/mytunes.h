@@ -17,6 +17,7 @@
 #ifndef MYTUNES_H
 #define MYTUNES_H
 #include <sstream>
+#include <map>
 using namespace std;
 #include "UI.h"
 #include "command.h"
@@ -48,10 +49,10 @@ class MyTunes
 	int nextAvailableTrackID;
 
   //Data collections
-  MyTunesCollection<Song> songs;
-	MyTunesCollection<Recording> recordings;
-	MyTunesCollection<Track> tracks;
-	MyTunesCollection<User> users;
+  MyTunesCollection<int, Song> songs;
+	MyTunesCollection<int, Recording> recordings;
+	MyTunesCollection<int, Track> tracks;
+	MyTunesCollection<string, User> users;
 
   void executeCMDADD(Command cmd);
   void executeCMDDELETE(Command cmd);

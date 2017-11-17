@@ -28,19 +28,19 @@ class Playlist {
 	Playlist represents an user playlist of tracks.
 	*/
 	public:
-	Playlist(const string & aPlaylistName); 
+	Playlist(const string & aPlaylistName);
 	~Playlist(void);
-    int getID();
-	string getName();
+    //int getID();
+	string getID();
 	void removeTrack(Track & aTrack);
 	void addTrack(Track & aTrack);
-	vector<Track*> & getTracks();
+	map<int, Track*> & getTracks();
     string toString() const;
-	
+
 	private:
 	string name;
-	vector<Track*> tracks;	
-	vector<Track*>::iterator findPosition(Track & aTrack);
+	map<int, Track*> tracks;
+	map<int, Track*>::iterator findPosition(Track & aTrack);
 	Playlist(const Playlist & aPlaylist); //hide copy constructor in private section
 };
 
